@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 
@@ -37,7 +31,7 @@ namespace ChatGPT
             string model = config["Model"];
             string endPoint = config["EndPoint"];
 
-            PutAnswer(String.Format("\n\nWelcome to ChatGPT.\nI'm model '{0}'\n\n", model));
+            PutAnswer(String.Format("\n\nChatGPT Terminal\n  model:'{0}'\n  end-point:'{1}'\n", model, endPoint));
 
             while (true)
             {
@@ -75,11 +69,11 @@ namespace ChatGPT
                                     var result = await reader.ReadToEndAsync();
                                     var res = JsonSerializer.Deserialize<Response>(result);
 
-                                    if (res!.choices.Count > 0)
+                                    if (res!.choices!.Count > 0)
                                     {
                                         foreach (var c in res!.choices)
                                         {
-                                            PutAnswer(c.text);
+                                            PutAnswer(c.text!);
                                         }
                                     }
                                 }

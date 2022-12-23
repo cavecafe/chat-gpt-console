@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1704.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatGPT.console", "ChatGPT.console.csproj", "{D4E846DB-B2D8-453D-9639-DFA736EEB784}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chat-gpt", "chat-gpt.csproj", "{E53974CE-EA08-4314-9FD0-53E809973A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4E846DB-B2D8-453D-9639-DFA736EEB784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4E846DB-B2D8-453D-9639-DFA736EEB784}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4E846DB-B2D8-453D-9639-DFA736EEB784}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4E846DB-B2D8-453D-9639-DFA736EEB784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53974CE-EA08-4314-9FD0-53E809973A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53974CE-EA08-4314-9FD0-53E809973A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53974CE-EA08-4314-9FD0-53E809973A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53974CE-EA08-4314-9FD0-53E809973A2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8ED2823C-5678-48B2-A4BE-F41CB9B81C2A}
+		SolutionGuid = {644BA364-29BF-400B-9F58-380CE534E104}
 	EndGlobalSection
 EndGlobal
