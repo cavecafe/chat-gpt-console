@@ -2,6 +2,7 @@
 
 ## A simple app to use ChatGPT in terminal
 
+ ![Logo](project-image.png)
 
 ### Disclaimer:
 
