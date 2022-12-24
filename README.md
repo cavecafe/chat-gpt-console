@@ -74,4 +74,8 @@ Of couse you will need to give the permission to execute the file
 
 ### How to setup your own API KEY
  ![How to setup your own API KEY](chat-gpt_first-run.png)
+
+ 
+### Run on Windows
+ ![Run on Windows](windows-terminal.png)
  
