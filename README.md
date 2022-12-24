@@ -59,7 +59,18 @@ Of couse you will need to give the permission to execute the file
 ### How to get your API KEY from OpenAI.org
  ![How to get your API KEY](how-to-get-your-own-API-KEY.png)
  
- For the first run, it will ask your API KEY, to store it to the 'appsettings.json'
+ For the first run, it will ask your API KEY, to store it to the 'appsettings.json' like the following.
+ 
+ ```javascript
+ {
+  "OpenAI": {
+    "ApiKey": "{your own OpenAPI key}",
+    "Model": "text-davinci-003",
+    "EndPoint": "https://api.openai.com/v1/completions"
+  }
+ }
+ ```
+
 ### How to setup your own API KEY
  ![How to setup your own API KEY](chat-gpt_first-run.png)
  
