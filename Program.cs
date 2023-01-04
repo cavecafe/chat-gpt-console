@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 
@@ -7,9 +8,13 @@ namespace ChatGPT
     class Program
     {
         private const string APPSETTING_FILE = "appsettings.json";
+        private static ConsoleColor questionColor = Console.ForegroundColor;
+        private static ConsoleColor answerColor = ConsoleColor.DarkBlue;
 
         static async Task Main(string[] args)
         {
+            Console.ForegroundColor = GetInvertedKnownColor(Console.BackgroundColor);
+
             if (!File.Exists(APPSETTING_FILE))
             {
                 PutAnswer("Please get & enter your API key from OpenAPI.org");
@@ -20,7 +25,7 @@ namespace ChatGPT
 
             var appsettings = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(APPSETTING_FILE, optional: true, reloadOnChange: true)
+                .AddJsonFile(APPSETTING_FILE, optional: true, reloadOnChange: false)
                 .Build();
 
             var section = appsettings.GetSection("OpenAI");
@@ -84,9 +89,53 @@ namespace ChatGPT
             }
         }
 
+
+        private static Dictionary<ConsoleColor, int[]> colorMap = new Dictionary<ConsoleColor, int[]>
+        {
+            { ConsoleColor.Black, new int[] { 0, 0, 0 } },
+            { ConsoleColor.DarkBlue, new int[] { 0, 0, 170 } },
+            { ConsoleColor.DarkGreen, new int[] { 0, 170, 0 } },
+            { ConsoleColor.DarkCyan, new int[] { 0, 170, 170 } },
+            { ConsoleColor.DarkRed, new int[] { 170, 0, 0 } },
+            { ConsoleColor.DarkMagenta, new int[] { 170, 0, 170 } },
+            { ConsoleColor.DarkYellow, new int[] { 170, 170, 0 } },
+            { ConsoleColor.Gray, new int[] { 170, 170, 170 } },
+            { ConsoleColor.DarkGray, new int[] { 85, 85, 85 } },
+            { ConsoleColor.Blue, new int[] { 85, 85, 255 } },
+            { ConsoleColor.Green, new int[] { 85, 255, 85 } },
+            { ConsoleColor.Cyan, new int[] { 85, 255, 255 } },
+            { ConsoleColor.Red, new int[] { 255, 85, 85 } },
+            { ConsoleColor.Magenta, new int[] { 255, 85, 255 } },
+            { ConsoleColor.Yellow, new int[] { 255, 255, 85 } },
+            { ConsoleColor.White, new int[] { 255, 255, 255 } }
+        };
+
+
+        private static ConsoleColor GetInvertedKnownColor(ConsoleColor consoleColor)
+        {
+            Color color = Color.FromName(consoleColor.ToString());
+            int[] colorRGB = new int[] { color.R, color.G, color.B };
+            ConsoleColor invertedColor = ConsoleColor.Gray;
+            int maxDistance = 0;
+            
+            foreach (var c in colorMap)
+            {
+                int distance = c.Value.Zip(colorRGB, (x, y) => Math.Abs(x - y)).Sum();
+
+                if (distance > maxDistance)
+                {
+                    invertedColor = c.Key;
+                    maxDistance = distance;
+                }
+            }
+
+            return invertedColor;
+        }
+
         private static void PutAnswer(string text, bool indent = false)
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = answerColor;
+
             if (text.StartsWith("\n\n"))
             {
                 text = text.Substring(1, text.Length - 1);
@@ -102,8 +151,10 @@ namespace ChatGPT
 
         private static string GetQuestion()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = questionColor;
+
             return Console.ReadLine()!;
         }
+ 
     }
 }
