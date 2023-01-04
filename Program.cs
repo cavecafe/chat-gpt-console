@@ -8,12 +8,35 @@ namespace ChatGPT
     class Program
     {
         private const string APPSETTING_FILE = "appsettings.json";
-        private static ConsoleColor questionColor = Console.ForegroundColor;
-        private static ConsoleColor answerColor = ConsoleColor.DarkBlue;
+        private static ConsoleColor questionColor;
+        private static ConsoleColor answerColor;
+        
+
+        private static Dictionary<ConsoleColor, int[]> colorMap = new Dictionary<ConsoleColor, int[]>
+        {
+            { ConsoleColor.Black, new int[] { 0, 0, 0 } },
+            { ConsoleColor.DarkBlue, new int[] { 0, 0, 170 } },
+            { ConsoleColor.DarkGreen, new int[] { 0, 170, 0 } },
+            { ConsoleColor.DarkCyan, new int[] { 0, 170, 170 } },
+            { ConsoleColor.DarkRed, new int[] { 170, 0, 0 } },
+            { ConsoleColor.DarkMagenta, new int[] { 170, 0, 170 } },
+            { ConsoleColor.DarkYellow, new int[] { 170, 170, 0 } },
+            { ConsoleColor.Gray, new int[] { 170, 170, 170 } },
+            { ConsoleColor.DarkGray, new int[] { 85, 85, 85 } },
+            { ConsoleColor.Blue, new int[] { 85, 85, 255 } },
+            { ConsoleColor.Green, new int[] { 85, 255, 85 } },
+            { ConsoleColor.Cyan, new int[] { 85, 255, 255 } },
+            { ConsoleColor.Red, new int[] { 255, 85, 85 } },
+            { ConsoleColor.Magenta, new int[] { 255, 85, 255 } },
+            { ConsoleColor.Yellow, new int[] { 255, 255, 85 } },
+            { ConsoleColor.White, new int[] { 255, 255, 255 } }
+        };
+
 
         static async Task Main(string[] args)
         {
-            Console.ForegroundColor = GetInvertedKnownColor(Console.BackgroundColor);
+             questionColor = Console.ForegroundColor;
+             answerColor = GetInvertedKnownColor(questionColor);
 
             if (!File.Exists(APPSETTING_FILE))
             {
@@ -71,15 +94,25 @@ namespace ChatGPT
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    var result = await reader.ReadToEndAsync();
-                                    var res = JsonSerializer.Deserialize<Response>(result);
-
-                                    if (res!.choices!.Count > 0)
+                                    try
                                     {
-                                        foreach (var c in res!.choices)
+                                        var result = await reader.ReadToEndAsync();
+                                        var res = JsonSerializer.Deserialize<Response>(result);
+                                        if (res!.error != null)
                                         {
-                                            PutAnswer(c.text!);
+                                            PutAnswer("Sorry, we got error. " + res.error.message);
                                         }
+                                        if (res!.choices!.Count > 0)
+                                        {
+                                            foreach (var c in res!.choices)
+                                            {
+                                                PutAnswer(c.text!);
+                                            }
+                                        }
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        PutAnswer("Something went wrong :/\nI cannot connect to my network by exception :" + e.Message);
                                     }
                                 }
                             }
@@ -88,27 +121,6 @@ namespace ChatGPT
                 }
             }
         }
-
-
-        private static Dictionary<ConsoleColor, int[]> colorMap = new Dictionary<ConsoleColor, int[]>
-        {
-            { ConsoleColor.Black, new int[] { 0, 0, 0 } },
-            { ConsoleColor.DarkBlue, new int[] { 0, 0, 170 } },
-            { ConsoleColor.DarkGreen, new int[] { 0, 170, 0 } },
-            { ConsoleColor.DarkCyan, new int[] { 0, 170, 170 } },
-            { ConsoleColor.DarkRed, new int[] { 170, 0, 0 } },
-            { ConsoleColor.DarkMagenta, new int[] { 170, 0, 170 } },
-            { ConsoleColor.DarkYellow, new int[] { 170, 170, 0 } },
-            { ConsoleColor.Gray, new int[] { 170, 170, 170 } },
-            { ConsoleColor.DarkGray, new int[] { 85, 85, 85 } },
-            { ConsoleColor.Blue, new int[] { 85, 85, 255 } },
-            { ConsoleColor.Green, new int[] { 85, 255, 85 } },
-            { ConsoleColor.Cyan, new int[] { 85, 255, 255 } },
-            { ConsoleColor.Red, new int[] { 255, 85, 85 } },
-            { ConsoleColor.Magenta, new int[] { 255, 85, 255 } },
-            { ConsoleColor.Yellow, new int[] { 255, 255, 85 } },
-            { ConsoleColor.White, new int[] { 255, 255, 255 } }
-        };
 
 
         private static ConsoleColor GetInvertedKnownColor(ConsoleColor consoleColor)

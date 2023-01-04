@@ -29,19 +29,19 @@ whereas *{your CPU type}* is the one of the following values,
 ### Download it from the repo:
 
 *  Linux (ARM): [linux-arm64](/publish/linux-arm64/chat-gpt) 
- (SHA256: c23783a7ca09641d3355f693c24f267d8ac78ade782acb47d5e46e03139c0660)
+ (SHA256: 93d650b6261b15cb868ef7da38f8855793cf4be830790b597d9c55d65c0f279d)
 *  Linux (Intel): [linux-x64](/publish/linux-x64/chat-gpt)
- (SHA256: 2bc9b30cf81ed9a45efd443c285e4fb09149c64e1908d6f127d77281bc9df847)
+ (SHA256: 7e70361f09718fd5976e47a8c3aca162ff9e72b02d12ce2b3b9020114b1df14d)
  
 *  OSX (Apple Silicons M1, M2): [osx-arm64](/publish/osx-arm64/chat-gpt) 
- (SHA256: c13ce7a61f181fac886e112e02eefe4797ee3b0fc39403137fe1299ba5ce69ca)
+ (SHA256: c9ba93ab46b897ed853d477ac9f41b78e7ce6ffc40635d160f6f911a9ca66b3e)
 *  OSX (Intel): [osx-x64](/publish/osx-x64/chat-gpt)
- (SHA256: 36928c039ac36f079033450aa4121e9832ac6105c472decfcda8018650505ef5)
+ (SHA256: 5195f737b83b5409a577f95330dfda2c3dd87ea5dbd3e20a0f93fcf41f435c30)
 
 *  Windows (Intel): [win-x64](/publish/win-x64/chat-gpt.exe)
- (SHA256: 712b1097d9f9861a77ce253f07127dc386a4c3a8bc8b5df162cb6809e1af38d5)
+ (SHA256: c0663c2ee48c0de2efb5df5b649f40e668eabd99525a9f70a3766bee32a9f3fe)
 *  Windows (ARM): [win-arm64](/publish/win-arm64/chat-gpt.exe)
- (SHA256: 7c60386006fe649fd455078e4540db011e11b599b15563cfd4d4965bf7b8b570)
+ (SHA256: 17ee533ac61c9df57111723eaa9becacebc60d9a99d3dd9243b27e7992bb5789)
 	
 Of couse you will need to give the permission to execute the file
 

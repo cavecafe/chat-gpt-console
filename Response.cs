@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace ChatGPT
 {
@@ -8,8 +9,10 @@ namespace ChatGPT
         public string? @object { get; set; }
         public int created { get; set; }
         public string? model { get; set; }
+
         public List<Choice>? choices { get; set; }
         public Usage? usage { get; set; }
+        public Error? error { get; set; }
     }
 
     public class Choice
@@ -25,6 +28,14 @@ namespace ChatGPT
         public int prompt_tokens { get; set; }
         public int completion_tokens { get; set; }
         public int total_tokens { get; set; }
+    }
+
+    public class Error
+    {
+        public string? message { get; set; }
+        public string? type { get; set; }
+        public string? param { get; set; }
+        public string? code { get; set; }
     }
 }
 
