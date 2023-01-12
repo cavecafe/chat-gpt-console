@@ -87,7 +87,3 @@ Of couse you will need to give the permission to execute the file
 > This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
 
 > Please note that this software has not been thoroughly tested and may contain bugs or errors. Use at your own risk. The authors make no guarantees or warranties regarding the use or functionality of this software."
-
-> You can customize this disclaimer text to suit your specific needs and requirements. For example, you can add a clause stating that the software is provided "as is" and that the authors are not responsible for any damages or losses resulting from the use of the software. You can also include a statement that the software is provided "without any warranties or guarantees of any kind," to make it clear that you are not making any promises about the performance or reliability of the software.
-
-> It's important to include a disclaimer in your open source project to protect yourself and your contributors from liability and to clearly communicate the limitations and risks of using the software. This can help to manage expectations and ensure that users understand the potential risks and limitations of the software.
